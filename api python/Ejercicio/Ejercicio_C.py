@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 import datetime
+import RPY3_divisas as datos_divisas
 
 divisas = np.loadtxt('RPY3_divisas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(divisas)
@@ -90,7 +91,7 @@ for c in range(0,12):
     suma_mensual_ventas_c.append(suma_mensual_c)
     #print(suma_mensual_a)
     suma_mensual_c = 0
-    
+  
 eje_y_a = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
 eje_x_a = suma_mensual_ventas_a
 plt.barh(eje_y_a, eje_x_a)
