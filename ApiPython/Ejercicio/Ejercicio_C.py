@@ -1,12 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 import datetime
-import RPY3_divisas as datos_divisas
 
-divisas = np.loadtxt('RPY3_divisas.txt',skiprows=1,delimiter=',',dtype=object)
+divisas = np.loadtxt(u'divisas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(divisas)
 #print("")
-ventas = np.loadtxt('RPY3_ventas.txt',skiprows=1,delimiter=',',dtype=object)
+ventas = np.loadtxt(u'ventas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(ventas)
 
 meses = [31,29,31,30,31,30,31,31,30,31,30,31]
@@ -117,7 +116,7 @@ plt.title("Valor de venta mensual de la empresa C")
 plt.show()
 
 
-"""
+
 # PREGUNTA 2
 
 ventas_a = 0
@@ -158,7 +157,7 @@ elif ventas_b > ventas_a and ventas_b > ventas_c:
     print(f"La empresa con mayores ventas del año 2020 es: Empresa B")
 else:
     print(f"La empresa con mayores ventas del año 2020 es: Empresa C")
-
+""""
 # PREGUNTA 3
 
 mercado = []
