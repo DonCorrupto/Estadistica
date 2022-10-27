@@ -1,11 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 import datetime
+import pandas as pd
 
-divisas = np.loadtxt(u'divisas.txt',skiprows=1,delimiter=',',dtype=object)
+divisas = np.loadtxt('divisas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(divisas)
 #print("")
-ventas = np.loadtxt(u'ventas.txt',skiprows=1,delimiter=',',dtype=object)
+ventas = np.loadtxt('ventas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(ventas)
 
 meses = [31,29,31,30,31,30,31,31,30,31,30,31]

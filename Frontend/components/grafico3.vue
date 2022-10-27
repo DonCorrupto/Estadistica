@@ -1,5 +1,6 @@
 <template>
-  <div style="width: 50%">
+  <div>
+    <Nuxt />
     <div>
       <Bar
         :chart-options="chartOptions"
@@ -12,8 +13,6 @@
         :width="width"
         :height="height"
       />
-      <grafico2 />
-      <grafico3 />
     </div>
   </div>
 </template>
@@ -41,7 +40,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "BarChart",
+  name: "BarChart1",
   components: { Bar },
   props: {
     chartId: {
@@ -110,22 +109,15 @@ export default {
       console.log(response);
       this.data = response.data;
 
-      const datosGrafico1 = response.data.data[0];
+      const datosGrafico1 = response.data.data[2];
       console.log(datosGrafico1);
       this.chartData.datasets = [
         {
-          label: "Valor de venta mensual de la empresa A",
-          backgroundColor: "#f87979",
+          label: "Valor de venta mensual de la empresa C",
+          backgroundColor: "dodgerblue",
           data: datosGrafico1,
         },
       ];
-
-      const datosGrafico2 = response.data.data[1];
-      
-      //console.log(datosGrafico2);
-
-      const datosGrafico3 = response.data.data[2];
-      //console.log(datosGrafico3);
     },
   },
 };
