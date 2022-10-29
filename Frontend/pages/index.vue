@@ -1,19 +1,54 @@
 <template>
-  <div style="width: 50%">
+  <div>
+    <center>
+      <h1>Test Laboral</h1>
+    </center>
+    <h6 style="margin-left: 1%">
+      El archivo ventas.txt contiene los valores de ventas diarias durante el
+      año 2020 para las empresas A, B y C. Cabe resaltar, que la fecha se
+      encuentra en formato AAAA-MM-DD. Adicionalmente, las empresas A, B y C
+      realizan sus ventas en dólares, euros y pesos colombianos respectivamente.
+      El archivo divisas.txt contiene los valores de cierre por día del valor
+      del dólar y el euro en pesos colombianos. a. Resumir y graficar los
+      valores de venta mensuales por empresa convertidos a pesos colombianos. b.
+      Identificar la empresa con mayores ventas para el año 2020. c. Asumiendo
+      que las tres empresas suman la totalidad del mercado de un producto X,
+      ¿cuál fue el mes de mayor crecimiento de dicho mercado?
+    </h6>
+    <br />
     <div>
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
+      <hr />
+      <div style="display:flex">
+        <Bar
+          :chart-options="chartOptions"
+          :chart-data="chartData"
+          :chart-id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+        />
+        <div>
+          <b-table
+            style="margin-left: 5%"
+            striped
+            hover
+            :items="items"
+          ></b-table>
+        </div>
+      </div>
+      <br />
+      <hr />
       <grafico2 />
+      <br />
+      <hr />
       <grafico3 />
+      <br />
+      <hr />
+      <grafico4 />
+      <br />
     </div>
   </div>
 </template>
@@ -96,6 +131,7 @@ export default {
       chartOptions: {
         responsive: true,
       },
+      items: [{}],
     };
   },
 
@@ -111,7 +147,7 @@ export default {
       this.data = response.data;
 
       const datosGrafico1 = response.data.data[0];
-      console.log(datosGrafico1);
+      //console.log(datosGrafico1);
       this.chartData.datasets = [
         {
           label: "Valor de venta mensual de la empresa A",
@@ -120,12 +156,20 @@ export default {
         },
       ];
 
-      const datosGrafico2 = response.data.data[1];
-      
-      //console.log(datosGrafico2);
-
-      const datosGrafico3 = response.data.data[2];
-      //console.log(datosGrafico3);
+      const empresaA = response.data.empresaA;
+      console.log(empresaA);
+      this.items = [
+        {
+          Media: empresaA[0],
+          Mediana: empresaA[1],
+          Desviación: empresaA[2],
+          Varianza: empresaA[3],
+          Correlación: empresaA[4],
+          Covarianza: empresaA[5],
+          Moda: empresaA[6],
+          
+        },
+      ];
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nuxt />
-    <div>
+    <div style="display: flex">
       <Bar
         :chart-options="chartOptions"
         :chart-data="chartData"
@@ -13,6 +13,9 @@
         :width="width"
         :height="height"
       />
+      <div>
+        <b-table style="margin-left: 5%" striped hover :items="items"></b-table>
+      </div>
     </div>
   </div>
 </template>
@@ -40,7 +43,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "BarChart1",
+  name: "BarChart",
   components: { Bar },
   props: {
     chartId: {
@@ -95,6 +98,7 @@ export default {
       chartOptions: {
         responsive: true,
       },
+      items: [{}],
     };
   },
 
@@ -106,16 +110,30 @@ export default {
     async getDatos() {
       const url = "http://127.0.0.1:5000/api/v1/data";
       const response = await axios.get(url);
-      console.log(response);
+      //console.log(response);
       this.data = response.data;
 
-      const datosGrafico1 = response.data.data[2];
-      console.log(datosGrafico1);
+      const datosGrafico3 = response.data.data[2];
+      //console.log(datosGrafico3);
       this.chartData.datasets = [
         {
           label: "Valor de venta mensual de la empresa C",
           backgroundColor: "dodgerblue",
-          data: datosGrafico1,
+          data: datosGrafico3,
+        },
+      ];
+
+      const empresaC = response.data.empresaC;
+      console.log(empresaC);
+      this.items = [
+        {
+          Media: empresaC[0],
+          Mediana: empresaC[1],
+          Desviación: empresaC[2],
+          Varianza: empresaC[3],
+          Correlación: empresaC[4],
+          Covarianza: empresaC[5],
+          Moda: empresaC[6],
         },
       ];
     },

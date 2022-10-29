@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="display:flex">
     <Nuxt />
-    <div style="display: flex">
+    <div style="width: 50%">
       <Bar
         :chart-options="chartOptions"
         :chart-data="chartData"
@@ -13,9 +13,9 @@
         :width="width"
         :height="height"
       />
-      <div>
-        <b-table style="margin-left: 5%" striped hover :items="items"></b-table>
-      </div>
+    </div>
+    <div style="margin-left: 2%">
+        <h5 style="margin-top:5%">{{mayorVentas}}</h5>
     </div>
   </div>
 </template>
@@ -78,27 +78,18 @@ export default {
   data() {
     return {
       data: null,
+      mayorVentas: null,
       chartData: {
         labels: [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre",
+          "Empresa A",
+          "Empresa B",
+          "Empresa C",
         ],
         datasets: [{}],
       },
       chartOptions: {
         responsive: true,
       },
-      items: [{}],
     };
   },
 
@@ -113,29 +104,24 @@ export default {
       //console.log(response);
       this.data = response.data;
 
-      const datosGrafico2 = response.data.data[1];
-      //console.log(datosGrafico2);
+      const datosGrafico4 = response.data.data2;
+      //console.log(datosGrafico4);
       this.chartData.datasets = [
         {
-          label: "Valor de venta mensual de la empresa B",
-          backgroundColor: "orange",
-          data: datosGrafico2,
+          label: "Ventas del año 2020",
+          backgroundColor: "mediumseagreen",
+          data: datosGrafico4,
         },
       ];
 
-      const empresaB = response.data.empresaB;
-      console.log(empresaB);
-      this.items = [
-        {
-          Media: empresaB[0],
-          Mediana: empresaB[1],
-          Desviación: empresaB[2],
-          Varianza: empresaB[3],
-          Correlación: empresaB[4],
-          Covarianza: empresaB[5],
-          Moda: empresaB[6],
-        },
-      ];
+      if (datosGrafico4[0] > datosGrafico4[1] || datosGrafico4[0]  > datosGrafico4[2] ) {
+        this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa A";
+      } else if (datosGrafico4[1] > datosGrafico4[0] || datosGrafico4[1]  > datosGrafico4[2]) {
+        this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa B";
+      } else {
+        this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa C";
+      }
+
     },
   },
 };

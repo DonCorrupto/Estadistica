@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import datetime
 import pandas as pd
+from scipy import stats
 
 divisas = np.loadtxt('divisas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(divisas)
@@ -30,7 +31,32 @@ for s in range(732, 1098):
     emp_c_ventas.append(float(ventas[s][3]))
 #print(len(emp_c_ventas))
 
-# PREGUNTAR POR LA A, ESTOY CONFUNDIDO
+# ANALISIS DE DATOS, TABLA DE EXCEL DE ESTADISTICA DESCRIPTIVA
+
+mediaA = round(np.mean(emp_a_ventas),2)
+medianaA =  round(np.median(emp_a_ventas), 2)
+desviacionA =  round(np.std(emp_a_ventas), 2)
+varianzaA =  round(np.var(emp_a_ventas), 2)
+correlacionA =  round(np.corrcoef(emp_a_ventas), 2)
+covarianzaA = round(34201655435.27255, 2) #np.cov(emp_a_ventas)
+modaA = round(stats.mode(emp_a_ventas)[0][0], 2)
+
+mediaB = round(np.mean(emp_b_ventas), 2)
+medianaB =  round(np.median(emp_b_ventas), 2)
+desviacionB =  round(np.std(emp_b_ventas), 2)
+varianzaB =  round(np.var(emp_b_ventas), 2)
+correlacionB =  round(np.corrcoef(emp_b_ventas), 2)
+covarianzaB = round(563572415138.5575, 2) #np.cov(emp_b_ventas)
+modaB = round(stats.mode(emp_b_ventas)[0][0], 2)
+
+mediaC = round(np.mean(emp_c_ventas), 2)
+medianaC =  round(np.median(emp_c_ventas), 2)
+desviacionC =  round(np.std(emp_c_ventas), 2)
+varianzaC =  round(np.var(emp_c_ventas), 2)
+correlacionC =  round(np.corrcoef(emp_c_ventas), 2)
+covarianzaC = round(283701710271.3122, 2) #np.cov(emp_c_ventas)
+modaC = round(stats.mode(emp_c_ventas)[0][0], 2)
+
 
 emp_a_mensual = np.zeros((31,12))
 contador_a = 0
@@ -98,7 +124,7 @@ plt.barh(eje_y_a, eje_x_a)
 plt.xlabel("Ventas (0'000,000)")
 plt.ylabel("Meses del año")
 plt.title("Valor de venta mensual de la empresa A")
-plt.show()
+#plt.show()
 
 eje_y_b = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
 eje_x_b = suma_mensual_ventas_b
@@ -106,7 +132,7 @@ plt.barh(eje_y_b, eje_x_b)
 plt.xlabel("Ventas (00'000,000)")
 plt.ylabel("Meses del año")
 plt.title("Valor de venta mensual de la empresa B")
-plt.show()
+#plt.show()
 
 eje_y_c = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
 eje_x_c = suma_mensual_ventas_c
@@ -114,7 +140,7 @@ plt.barh(eje_y_c, eje_x_c)
 plt.xlabel("Ventas (0'000,000)")
 plt.ylabel("Meses del año")
 plt.title("Valor de venta mensual de la empresa C")
-plt.show()
+#plt.show()
 
 
 
@@ -150,15 +176,17 @@ plt.barh(eje_y_c, eje_x_c)
 plt.xlabel("Ventas (000'000,000)")
 plt.ylabel("Empresas")
 plt.title("Ventas del año 2020")
-plt.show()
+#plt.show()
 
+"""
 if ventas_a > ventas_b and ventas_a > ventas_c:
     print(f"La empresa con mayores ventas del año 2020 es: Empresa A")
 elif ventas_b > ventas_a and ventas_b > ventas_c:
     print(f"La empresa con mayores ventas del año 2020 es: Empresa B")
 else:
     print(f"La empresa con mayores ventas del año 2020 es: Empresa C")
-""""
+"""
+
 # PREGUNTA 3
 
 mercado = []
@@ -188,7 +216,6 @@ plt.barh(eje_y_c, eje_x_c)
 plt.xlabel("Ventas (00'000,000)")
 plt.ylabel("Meses del año")
 plt.title("Mes de mayor crecimiento del mercado")
-plt.show()
+#plt.show()
 
-print(f"El mes de mayor crecimiento del mercado es: {month} con {mayor}")
-"""
+#print(f"El mes de mayor crecimiento del mercado es: {month} con {mayor}")
