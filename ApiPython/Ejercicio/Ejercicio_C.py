@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import datetime
 import pandas as pd
 from scipy import stats
+import random
+import math
 
 divisas = np.loadtxt('divisas.txt',skiprows=1,delimiter=',',dtype=object)
 #print(divisas)
@@ -219,3 +221,25 @@ plt.title("Mes de mayor crecimiento del mercado")
 #plt.show()
 
 #print(f"El mes de mayor crecimiento del mercado es: {month} con {mayor}")
+
+
+
+
+#ANALISIS Y ESTADISTICA DE DATOS 
+grafico1_n = 100
+grafico1 = random.sample(emp_a_ventas, grafico1_n)
+grafico1Media = round(np.mean(grafico1),2)
+grafico1Desviacion =  round(np.std(grafico1), 2)
+grafico1varianza =  round(np.var(grafico1), 2)
+grafico1_P = 1.96
+grafico1Menos = round(grafico1Media-grafico1_P*(grafico1Desviacion/math.sqrt(grafico1_n)), 2)
+grafico1Mas = round(grafico1Media+grafico1_P*(grafico1Desviacion/math.sqrt(grafico1_n)), 2)
+
+
+
+
+
+
+
+
+

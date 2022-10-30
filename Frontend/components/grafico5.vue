@@ -1,5 +1,5 @@
 <template>
-  <div style="display:flex">
+  <div style="display: flex">
     <Nuxt />
     <div style="width: 50%">
       <Bar
@@ -15,7 +15,7 @@
       />
     </div>
     <div style="margin-left: 4%; width: 50%">
-        <h5>{{mayorVentas}}</h5>
+      <h5>{{ mayorMercado }}</h5>
     </div>
   </div>
 </template>
@@ -78,12 +78,21 @@ export default {
   data() {
     return {
       data: null,
-      mayorVentas: null,
+      mayorMercado: null,
       chartData: {
         labels: [
-          "Empresa A",
-          "Empresa B",
-          "Empresa C",
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
         ],
         datasets: [{}],
       },
@@ -104,24 +113,17 @@ export default {
       //console.log(response);
       this.data = response.data;
 
-      const datosGrafico4 = response.data.data2;
-      //console.log(datosGrafico4);
+      const datosGrafico5 = response.data.grafico5;
+      //console.log(datosGrafico5);
       this.chartData.datasets = [
         {
-          label: "Ventas del año 2020",
-          backgroundColor: "mediumseagreen",
-          data: datosGrafico4,
+          label: "Mes de mayor crecimiento del mercado",
+          backgroundColor: "#A569BD",
+          data: datosGrafico5[0],
         },
       ];
-
-      if (datosGrafico4[0] > datosGrafico4[1] || datosGrafico4[0]  > datosGrafico4[2] ) {
-        this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa A";
-      } else if (datosGrafico4[1] > datosGrafico4[0] || datosGrafico4[1]  > datosGrafico4[2]) {
-        this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa B";
-      } else {
-        this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa C";
-      }
-
+ 
+      this.mayorMercado = "El mes de mayor crecimiento del mercado es: " + datosGrafico5[1] + " con " + datosGrafico5[2];
     },
   },
 };

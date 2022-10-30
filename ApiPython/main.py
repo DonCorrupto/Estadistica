@@ -10,13 +10,18 @@ empresa_A = data.mediaA, data.medianaA, data.desviacionA, data.varianzaA, data.c
 empresa_B = data.mediaB, data.medianaB, data.desviacionB, data.varianzaB, data.correlacionB, data.covarianzaB, data.modaB
 empresa_C = data.mediaC, data.medianaC, data.desviacionC, data.varianzaC, data.correlacionC, data.covarianzaC, data.modaC
 
+grafico5 = data.mercado, data.month, data.mayor
+
+
+analisisGrafico1 = data.grafico1_n, data.grafico1, data.grafico1Media, data.grafico1Desviacion, data.grafico1varianza, data.grafico1_P, data.grafico1Menos, data.grafico1Mas
+
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/api/v1/data', methods=['GET'])
 
 def get_data():
-    reponse = {"data": datos, "data2": datos2, "empresaA": empresa_A, "empresaB": empresa_B, "empresaC": empresa_C}
+    reponse = {"data": datos, "data2": datos2, "empresaA": empresa_A, "empresaB": empresa_B, "empresaC": empresa_C, "grafico5": grafico5, "analisisGrafico1" : analisisGrafico1}
     return jsonify(reponse)
 
 if __name__ == '__main__':

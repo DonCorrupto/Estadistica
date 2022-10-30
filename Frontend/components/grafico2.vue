@@ -2,19 +2,27 @@
   <div>
     <Nuxt />
     <div style="display: flex">
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
-      <div>
-        <b-table style="margin-left: 5%" striped hover :items="items"></b-table>
+      <div style="width: 50%">
+        <Bar
+          :chart-options="chartOptions"
+          :chart-data="chartData"
+          :chart-id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+        />
+      </div>
+      <div style="margin-left: 4%; width: 50%">
+        <b-table striped hover :items="items"></b-table>
+        <center><h6>Prueba de Hipotesis</h6></center>
+        <p>
+            Con experiencias pasadas, la empresa B predijo que el valor de venta anual sería de $2.500.000 en el año 2020. A finales del año, la empresa elige
+            una muestra aleatoria de 150 dias y calcula una media y una desviacion estandar de # y # respectivamente.
+            Utilice un nivel de significancia de 0.05 para determiar si el pronostico de la empresa B era razonable.
+          </p>
       </div>
     </div>
   </div>
@@ -124,7 +132,7 @@ export default {
       ];
 
       const empresaB = response.data.empresaB;
-      console.log(empresaB);
+      //console.log(empresaB);
       this.items = [
         {
           Media: empresaB[0],

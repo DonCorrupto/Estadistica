@@ -2,19 +2,21 @@
   <div>
     <Nuxt />
     <div style="display: flex">
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
-      <div>
-        <b-table style="margin-left: 5%" striped hover :items="items"></b-table>
+      <div  style="width: 50%">
+        <Bar
+          :chart-options="chartOptions"
+          :chart-data="chartData"
+          :chart-id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+        />
+      </div>
+      <div style="margin-left: 4%; width: 50%">
+        <b-table striped hover :items="items"></b-table>
       </div>
     </div>
   </div>
@@ -124,7 +126,7 @@ export default {
       ];
 
       const empresaC = response.data.empresaC;
-      console.log(empresaC);
+      //console.log(empresaC);
       this.items = [
         {
           Media: empresaC[0],

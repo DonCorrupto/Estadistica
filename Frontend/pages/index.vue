@@ -18,25 +18,42 @@
     <br />
     <div>
       <hr />
-      <div style="display:flex">
-        <Bar
-          :chart-options="chartOptions"
-          :chart-data="chartData"
-          :chart-id="chartId"
-          :dataset-id-key="datasetIdKey"
-          :plugins="plugins"
-          :css-classes="cssClasses"
-          :styles="styles"
-          :width="width"
-          :height="height"
-        />
-        <div>
-          <b-table
-            style="margin-left: 5%"
-            striped
-            hover
-            :items="items"
-          ></b-table>
+      <div style="display: flex">
+        <div style="width: 50%">
+          <Bar
+            :chart-options="chartOptions"
+            :chart-data="chartData"
+            :chart-id="chartId"
+            :dataset-id-key="datasetIdKey"
+            :plugins="plugins"
+            :css-classes="cssClasses"
+            :styles="styles"
+            :width="width"
+            :height="height"
+          />
+        </div>
+        <div style="margin-left: 4%; width: 50%">
+          <b-table striped hover :items="items"></b-table>
+          <center><h6>Intervalo de Confianza</h6></center>
+          <p>
+            La empresa A predijo que el valor de venta promedio en el año 2020
+            sería de $700.000. finalizando el año, la empresa elige una muestra
+            aleatoria de 100 dias y registra su valor de venta en pesos. La
+            empresa utilizo un intervalo de confianza del 95% para el valor de
+            venta promedio.
+          </p>
+          <p>
+            X = valor de venta &nbsp;&nbsp;&nbsp;&nbsp; μ = {{ grafico1Media }} &nbsp;&nbsp;&nbsp;&nbsp; σ² = {{ grafico1varianza }} &nbsp;&nbsp;&nbsp;&nbsp; α = 0.05 &nbsp;&nbsp;&nbsp;&nbsp; 1-α = 0.95
+          </p>
+          <p>
+            P(Z>Z_0.025) = {{ grafico1_P }} &nbsp;&nbsp;&nbsp;&nbsp; Intervalo = [{{ grafico1Menos }} , {{ grafico1Mas }}]
+          </p>
+          <p>
+            Con una confianza del 95% se espera que μ este entre [{{ grafico1Menos }} , {{ grafico1Mas }}]
+          </p>
+          <p>
+            Como el intervalo de confianza contiene $700.000, la empresa A no esta en lo correcto
+          </p>
         </div>
       </div>
       <br />
@@ -48,6 +65,9 @@
       <br />
       <hr />
       <grafico4 />
+      <br />
+      <hr />
+      <grafico5 />
       <br />
     </div>
   </div>
@@ -111,6 +131,14 @@ export default {
   data() {
     return {
       data: null,
+      grafico1_n: null,
+      grafico1: null,
+      grafico1Media: null,
+      grafico1Desviacion: null,
+      grafico1varianza: null,
+      grafico1_P: null,
+      grafico1Menos: null,
+      grafico1Mas: null,
       chartData: {
         labels: [
           "Enero",
@@ -157,7 +185,7 @@ export default {
       ];
 
       const empresaA = response.data.empresaA;
-      console.log(empresaA);
+      //console.log(empresaA);
       this.items = [
         {
           Media: empresaA[0],
@@ -167,9 +195,19 @@ export default {
           Correlación: empresaA[4],
           Covarianza: empresaA[5],
           Moda: empresaA[6],
-          
         },
       ];
+
+      const analisisGrafico1 = response.data.analisisGrafico1;
+      //console.log(analisisGrafico1);
+      (this.grafico1_n = analisisGrafico1[0]),
+        (this.grafico1 = analisisGrafico1[1]),
+        (this.grafico1Media = analisisGrafico1[2]),
+        (this.grafico1Desviacion = analisisGrafico1[3]),
+        (this.grafico1varianza = analisisGrafico1[4]),
+        (this.grafico1_P = analisisGrafico1[5]),
+        (this.grafico1Menos = analisisGrafico1[6]),
+        (this.grafico1Mas = analisisGrafico1[7]);
     },
   },
 };
