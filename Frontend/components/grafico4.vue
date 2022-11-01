@@ -15,7 +15,24 @@
       />
     </div>
     <div style="margin-left: 4%; width: 50%">
-        <h5>{{mayorVentas}}</h5>
+        <center>
+          <h5>Intervalos de confianza entre las empresas</h5>
+        </center>
+        <b-table striped hover :items="items"></b-table>
+        <p>
+          Intervalo de Confianza A-B [{{ICABMenos}}, {{ICABMas}}] este intervalo no contiene
+          el cero. Por tanto, es razonable suponer que hay diferencia en los incrementos de las empresas. 
+          Esto quiere decir que la empresa B tiene mayor ventas que la empresa A.
+        </p>
+        <p>
+          Intervalo de Confianza A-C [{{ICACMenos}}, {{ICACMas}}] este intervalo no contiene
+          el cero. Por tanto, es razonable suponer que hay diferencia en los incrementos de las empresas. 
+          Esto quiere decir que la empresa C tiene mayor ventas que la empresa A.
+        </p>
+        <p>
+          Intervalo de Confianza A-C [{{ICBCMenos}}, {{ICBCMas}}] este intervalo si contiene el cero.Por tanto,
+          es razonable suponer que no hay diferencia en los incrementos de las empresas a comparacion de la empresa B.
+        </p>
     </div>
   </div>
 </template>
@@ -79,6 +96,12 @@ export default {
     return {
       data: null,
       mayorVentas: null,
+      ICABMenos: null,
+      ICABMas: null,
+      ICACMenos: null,
+      ICACMas: null,
+      ICBCMenos: null,
+      ICBCMas: null,
       chartData: {
         labels: [
           "Empresa A",
@@ -90,6 +113,7 @@ export default {
       chartOptions: {
         responsive: true,
       },
+      items: [{}],
     };
   },
 
@@ -121,6 +145,47 @@ export default {
       } else {
         this.mayorVentas = "La empresa con mayores ventas del año 2020 es: Empresa C";
       }
+
+      const ICAB = response.data.ICAB
+      this.ICABMenos = ICAB[0]
+      this.ICABMas = ICAB[1]
+
+      const ICAC = response.data.ICAC
+      this.ICACMenos = ICAC[0]
+      this.ICACMas = ICAC[1]
+
+      const ICBC = response.data.ICBC
+      this.ICBCMenos = ICBC[0]
+      this.ICBCMas = ICBC[1]
+
+
+      const analisisEmpresaA = response.data.analisisGrafico1;
+      //console.log(analisisEmpresaA);
+      const analisisEmpresaB = response.data.analisisGrafico2;
+      const analisisEmpresaC = response.data.analisisGrafico3;
+      this.items = [
+        {
+          
+          variables: 'X_muestral',
+          Empresa_A: analisisEmpresaA[2],
+          Empresa_B: analisisEmpresaB[3],
+          Empresa_C: analisisEmpresaC[2]
+        },
+
+        {
+          variables: 'S',
+          Empresa_A: analisisEmpresaA[3],
+          Empresa_B: analisisEmpresaB[4],
+          Empresa_C: analisisEmpresaC[3]
+
+        },
+        {
+          variables:'n',
+          Empresa_A: analisisEmpresaA[0],
+          Empresa_B: analisisEmpresaB[0],
+          Empresa_C: analisisEmpresaC[0]
+        }
+      ];
 
     },
   },

@@ -241,7 +241,7 @@ grafico1Mas = round(grafico1Media+grafico1_P*(grafico1Desviacion/math.sqrt(grafi
 grafico2_n = 150
 grafico2MediaPoblacional = 2500000
 grafico2 = random.sample(emp_b_ventas, grafico2_n)
-grafico2MediaMuestral = round(np.mean(grafico1),2)
+grafico2MediaMuestral = round(np.mean(grafico2),2)
 grafico2DesviacionMuestral =  round(np.std(grafico2), 2)
 grafico2_NS = 0.05
 if grafico2_NS == 0.05:
@@ -262,9 +262,33 @@ elif grafico2_Zcal < RR:
     grafico2Analisis = "No se rechaza H0, entonces el pronostico de la empresa B es razonable"
 
 
+grafico3_n = 175
+grafico3 = random.sample(emp_c_ventas, grafico3_n)
+grafico3MediaMuestral = round(np.mean(grafico3), 2)
+grafico3DesviacionMuestral =  round(np.std(grafico3), 2)
 
 
 
+#ANALISIS DE INTERVALOS DE CONFIANZA DE DOS POBLACIONES
+# A-B
+
+ab_SP2 = (((grafico1_n - 1)*grafico1Desviacion**2)+((grafico2_n - 1)*grafico2DesviacionMuestral**2)/grafico1_n+grafico2_n-2)
+ab_t = 1.96958  
+abMenos = round((grafico1Media-grafico2MediaMuestral)-(ab_t*(math.sqrt(ab_SP2*((1/grafico1_n)+(1/grafico2_n))))),2)
+abMas = round((grafico1Media-grafico2MediaMuestral)+(ab_t*(math.sqrt(ab_SP2*((1/grafico1_n)+(1/grafico2_n))))),2)
 
 
+#A-C
+
+ac_SP2 = (((grafico1_n - 1)*grafico1Desviacion**2)+((grafico3_n - 1)*grafico3DesviacionMuestral**2)/grafico1_n+grafico3_n-2)
+ac_t = 1.96869  
+acMenos = round((grafico1Media-grafico3MediaMuestral)-(ab_t*(math.sqrt(ac_SP2*((1/grafico1_n)+(1/grafico3_n))))),2)
+acMas = round((grafico1Media-grafico3MediaMuestral)+(ab_t*(math.sqrt(ac_SP2*((1/grafico1_n)+(1/grafico3_n))))),2)
+
+#B-C
+
+bc_SP2 = (((grafico2_n - 1)*grafico2DesviacionMuestral**2)+((grafico3_n - 1)*grafico3DesviacionMuestral**2)/grafico2_n+grafico3_n-2)
+bc_t = 1.96734 
+bcMenos = round((grafico2MediaMuestral-grafico3MediaMuestral)-(ab_t*(math.sqrt(bc_SP2*((1/grafico2_n)+(1/grafico3_n))))),2)
+bcMas = round((grafico2MediaMuestral-grafico3MediaMuestral)+(ab_t*(math.sqrt(bc_SP2*((1/grafico2_n)+(1/grafico3_n))))),2)
 
