@@ -19,10 +19,27 @@
         <b-table striped hover :items="items"></b-table>
         <center><h6>Prueba de Hipotesis</h6></center>
         <p>
-            Con experiencias pasadas, la empresa B predijo que el valor de venta anual sería de $2.500.000 en el año 2020. A finales del año, la empresa elige
-            una muestra aleatoria de 150 dias y calcula una media y una desviacion estandar de # y # respectivamente.
-            Utilice un nivel de significancia de 0.05 para determiar si el pronostico de la empresa B era razonable.
-          </p>
+          Con experiencias pasadas, la empresa B predijo que el valor de venta
+          anual sería de $2.500.000 en el año 2020. A finales del año, la
+          empresa elige una muestra aleatoria de {{grafico2_n}} dias y calcula una media y
+          una desviacion estandar de {{grafico2MediaMuestral}} y {{grafico2DesviacionMuestral}} respectivamente. Utilice un nivel de
+          significancia de {{grafico2_NS}} para determiar si el pronostico de la empresa B
+          era razonable.
+        </p>
+        <p>
+          Se debe probar Ho μ = {{grafico2MediaPoblacional}} Vs μ ≠ {{grafico2MediaPoblacional}}
+        </p>
+        <p>
+          RR = {{grafico2_RR}}
+        </p>
+        <p>
+          Zcal = -{{grafico2_Zcal}}
+          <br>
+          Como |{{grafico2_Zcal}}| > Zα/2
+        </p>
+        <p>
+          {{grafico2Analisis}}
+        </p>
       </div>
     </div>
   </div>
@@ -86,6 +103,16 @@ export default {
   data() {
     return {
       data: null,
+      grafico2_n: null,
+      grafico2MediaPoblacional: null,
+      grafico2: null,
+      grafico2MediaMuestral: null,
+      grafico2DesviacionMuestral: null,
+      grafico2_NS: null,
+      grafico2_RR: null,
+      RR: null,
+      grafico2_Zcal: null,
+      grafico2Analisis: null,
       chartData: {
         labels: [
           "Enero",
@@ -144,6 +171,20 @@ export default {
           Moda: empresaB[6],
         },
       ];
+
+      const analisisGrafico2 = response.data.analisisGrafico2;
+      console.log(analisisGrafico2);
+
+      this.grafico2_n = analisisGrafico2[0]
+      this.grafico2MediaPoblacional = analisisGrafico2[1] 
+      this.grafico2 = analisisGrafico2[2] 
+      this.grafico2MediaMuestral = analisisGrafico2[3] 
+      this.grafico2DesviacionMuestral = analisisGrafico2[4] 
+      this.grafico2_NS = analisisGrafico2[5] 
+      this.grafico2_RR = analisisGrafico2[6] 
+      this.RR = analisisGrafico2[7]
+      this.grafico2_Zcal = analisisGrafico2[8] 
+      this.grafico2Analisis = analisisGrafico2[9] 
     },
   },
 };

@@ -1,3 +1,4 @@
+from ast import If
 import numpy as np
 import matplotlib.pyplot as plt 
 import datetime
@@ -235,6 +236,30 @@ grafico1_P = 1.96
 grafico1Menos = round(grafico1Media-grafico1_P*(grafico1Desviacion/math.sqrt(grafico1_n)), 2)
 grafico1Mas = round(grafico1Media+grafico1_P*(grafico1Desviacion/math.sqrt(grafico1_n)), 2)
 
+
+
+grafico2_n = 150
+grafico2MediaPoblacional = 2500000
+grafico2 = random.sample(emp_b_ventas, grafico2_n)
+grafico2MediaMuestral = round(np.mean(grafico1),2)
+grafico2DesviacionMuestral =  round(np.std(grafico2), 2)
+grafico2_NS = 0.05
+if grafico2_NS == 0.05:
+    grafico2_RR = "{Z/Z < -1.96 o Z > 1.96}"
+    RR = 1.96
+elif grafico2_NS == 0.01:
+    grafico2_RR = "{Z/Z < -2.57 o Z > 2.57}"
+    RR = 2.57
+elif grafico2_NS == 0.10:
+    grafico2_RR = "{Z/Z < -1.65 o Z > 1.65}"
+    RR = 1.65
+
+grafico2_Zcal = abs(round((math.sqrt(grafico2_n)*(grafico2MediaMuestral - grafico2MediaPoblacional))/(grafico2_n),2))
+
+if grafico2_Zcal > RR:
+    grafico2Analisis = "Se rechaza H0, entonces el pronostico de la empresa B no es razonable"
+elif grafico2_Zcal < RR:
+    grafico2Analisis = "No se rechaza H0, entonces el pronostico de la empresa B es razonable"
 
 
 
