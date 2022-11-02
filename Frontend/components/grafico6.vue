@@ -1,8 +1,8 @@
 <template>
-  <div style="display: flex">
+  <div>
     <Nuxt />
-    <div style="width: 50%">
-      <Bar
+    <div>
+      <Scatter
         :chart-options="chartOptions"
         :chart-data="chartData"
         :chart-id="chartId"
@@ -11,50 +11,49 @@
         :css-classes="cssClasses"
         :styles="styles"
         :width="width"
-        :height="height"
       />
-    </div>
-    <div style="margin-left: 4%; width: 50%">
-      <h5>{{ mayorMercado }}</h5>
-      <br>
-      <grafico6 />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { Bar } from "vue-chartjs";
+import { Scatter } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  LineElement,
   CategoryScale,
   LinearScale,
+  PointElement,
+  Plugin,
 } from "chart.js";
 
 ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  LineElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
+  PointElement
 );
 
 export default {
-  name: "BarChart",
-  components: { Bar },
+  name: "ScatterChart",
+  components: {
+    Scatter,
+  },
   props: {
     chartId: {
       type: String,
-      default: "bar-chart",
+      default: "scatter-chart",
     },
     datasetIdKey: {
       type: String,
-      default: "label",
+      default: "scatter"
     },
     width: {
       type: Number,
@@ -73,33 +72,19 @@ export default {
       default: () => {},
     },
     plugins: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
   },
   data() {
     return {
-      data: null,
-      mayorMercado: null,
       chartData: {
-        labels: [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre",
-        ],
         datasets: [{}],
       },
+
       chartOptions: {
         responsive: true,
+        maintainAspectRatio: false,
       },
     };
   },
@@ -115,17 +100,31 @@ export default {
       //console.log(response);
       this.data = response.data;
 
-      const datosGrafico5 = response.data.grafico5;
-      //console.log(datosGrafico5);
+      const datosGrafico6 = response.data.grafico6;
+      console.log(datosGrafico6);
+
+      let ejeX = []
+
+      for (let i = 0; i < 366; i++) {
+        ejeX.push(i);
+        
+      }
+      //console.log(x);
+
       this.chartData.datasets = [
         {
-          label: "Mes de mayor crecimiento del mercado",
-          backgroundColor: "#A569BD",
-          data: datosGrafico5[0],
-        },
-      ];
- 
-      this.mayorMercado = "El mes de mayor crecimiento del mercado es: " + datosGrafico5[1] + " con " + datosGrafico5[2];
+          label: 'Empresa A',
+          fill: false,
+          borderColor: '#f87979',
+          backgroundColor: '#f87979',
+          data:[
+            {
+              x: 1,
+              y: 3
+            }
+          ]
+        }
+      ]
     },
   },
 };

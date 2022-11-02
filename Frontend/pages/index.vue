@@ -43,16 +43,24 @@
             venta promedio.
           </p>
           <p>
-            X = valor de venta &nbsp;&nbsp;&nbsp;&nbsp; μ = {{ grafico1Media }} &nbsp;&nbsp;&nbsp;&nbsp; σ² = {{ grafico1varianza }} &nbsp;&nbsp;&nbsp;&nbsp; α = 0.05 &nbsp;&nbsp;&nbsp;&nbsp; 1-α = 0.95
+            X = valor de venta &nbsp;&nbsp;&nbsp;&nbsp; μ =
+            {{ grafico1Media }} &nbsp;&nbsp;&nbsp;&nbsp; σ² =
+            {{ grafico1varianza }} &nbsp;&nbsp;&nbsp;&nbsp; α = 0.05
+            &nbsp;&nbsp;&nbsp;&nbsp; 1-α = 0.95
           </p>
           <p>
-            P(Z>Z_0.025) = {{ grafico1_P }} &nbsp;&nbsp;&nbsp;&nbsp; Intervalo = [{{ grafico1Menos }} , {{ grafico1Mas }}]
+            P(Z>Z_0.025) = {{ grafico1_P }} &nbsp;&nbsp;&nbsp;&nbsp; Intervalo =
+            [{{ grafico1Menos }} , {{ grafico1Mas }}]
           </p>
           <p>
-            Con una confianza del 95% se espera que μ este entre [{{ grafico1Menos }} , {{ grafico1Mas }}]
+            Con una confianza del 95% se espera que μ este entre [{{
+              grafico1Menos
+            }}
+            , {{ grafico1Mas }}]
           </p>
           <p>
-            Como el intervalo de confianza contiene $700.000, la empresa A no esta en lo correcto
+            Como el intervalo de confianza contiene $700.000, la empresa A no
+            esta en lo correcto
           </p>
         </div>
       </div>

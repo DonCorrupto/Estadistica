@@ -173,7 +173,7 @@ export default {
       ];
 
       const analisisGrafico2 = response.data.analisisGrafico2;
-      console.log(analisisGrafico2);
+      //console.log(analisisGrafico2);
 
       this.grafico2_n = analisisGrafico2[0]
       this.grafico2MediaPoblacional = analisisGrafico2[1] 
