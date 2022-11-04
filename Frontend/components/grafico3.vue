@@ -16,9 +16,27 @@
         />
       </div>
       <div style="margin-left: 4%; width: 50%">
+        <h5>Prueba de Hipotesis</h5>
         <b-table striped hover :items="items"></b-table>
+        <p>
+          Hipotesis:
+        </p>
+        <p>
+          Ho: μ2 = μ1 Vs Ha: μ2 > μ1
+          Ho: μ2 - μ1 = 0 Vs Ha: μ2 - μ1 > 0
+        </p>
+        <p>
+          {{Rta}}
+        </p>
       </div>
     </div>
+    <br>
+    <p style="margin-left: 1%">
+      La empresa C empieza el año mal pero con el tiempo tiene un crecimiento casi lineal. El segundo semestre fue el mas beneficio en comparación al primer semestre.
+      Teniendo en cuenta que el mercado de la empresa esta ubicado en Colombia ya que maneja un flujo de caja en pesos colombianos, hay que reconocer que tuvo mejores
+      resultados que la empresa A. Prueba de hipotesis que realizo la empresa C de que la media del segundo semestre es mayor a la del primer semestre es verdadera.
+      Se debe analizar el mes de noviembre ya que fue el mes que decrecio teniendo un pasado de crecimiento; posiblemente por la temporada.
+    </p>
   </div>
 </template>
 
@@ -101,6 +119,8 @@ export default {
         responsive: true,
       },
       items: [{}],
+      Rta: null,
+
     };
   },
 
@@ -126,18 +146,32 @@ export default {
       ];
 
       const empresaC = response.data.empresaC;
+      const semestreC = response.data.graficoEmpresa_C;
       //console.log(empresaC);
       this.items = [
         {
-          Media: empresaC[0],
-          Mediana: empresaC[1],
-          Desviación: empresaC[2],
-          Varianza: empresaC[3],
-          Correlación: empresaC[4],
-          Covarianza: empresaC[5],
-          Moda: empresaC[6],
+          variables: "Y_muestral",
+          Semestre_1: semestreC[1],
+          Semestre_2: semestreC[2],
+        },
+        {
+          variables: "S",
+          Semestre_1: semestreC[3],
+          Semestre_2: semestreC[4],
+        },
+        {
+          variables: "n",
+          Semestre_1: semestreC[0],
+          Semestre_2: semestreC[0],
+        },
+        {
+          variables: "Media Poblacional",
+          Semestre_1: semestreC[8],
+          Semestre_2: semestreC[9],
         },
       ];
+      const Rta = "No se rechaza Ho con una confianza del 95%";
+      this.Rta = Rta
     },
   },
 };

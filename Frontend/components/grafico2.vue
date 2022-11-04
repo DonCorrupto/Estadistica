@@ -38,10 +38,17 @@
           Como |{{grafico2_Zcal}}| > Zα/2
         </p>
         <p>
-          {{grafico2Analisis}}
+          {{grafico2Analisis}}.
         </p>
       </div>
     </div>
+    <br>
+    <p style="margin-left: 1%"> 
+      La empresa B fue la tuvo mejores ventas ya que maneja un mercado europeo y la mayoria de las ventas fueron en euros. Debemos tener en cuenta que el euro es mas costoso que el dolar
+      en cuestiones de moneda. Los tres meses mas significativos de la empresa B fueron Junio, Noviembre y Diciembre, siendo este ultimo el mas destacado. Hay que tener en cuenta las 
+      festividades del mes de Diciembre que puede ser una causa de alto crecimiento de ventas en este mes. A simple vista casi tiene un crecimiento lineal. La empresa pudo sostener
+      su profit, me refiero que no tuvo decaidas en la mayoria de los meses.
+    </p>
   </div>
 </template>
 
@@ -166,7 +173,6 @@ export default {
           Mediana: empresaB[1],
           Desviación: empresaB[2],
           Varianza: empresaB[3],
-          Correlación: empresaB[4],
           Covarianza: empresaB[5],
           Moda: empresaB[6],
         },

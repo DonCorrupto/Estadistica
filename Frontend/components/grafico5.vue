@@ -1,24 +1,31 @@
 <template>
-  <div style="display: flex">
-    <Nuxt />
-    <div style="width: 50%">
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
+  <div>
+    <div style="display: flex">
+      <Nuxt />
+      <div style="width: 50%">
+        <Bar
+          :chart-options="chartOptions"
+          :chart-data="chartData"
+          :chart-id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+        />
+      </div>
+      <div style="margin-left: 1%; width: 50%">
+        <grafico6 />
+      </div>
     </div>
-    <div style="margin-left: 4%; width: 50%">
-      <h5>{{ mayorMercado }}</h5>
-      <br>
-      <grafico6 />
-    </div>
+    <br />
+    <p style="margin-left: 1%">
+      Podemos ver que el crecimiento del mercado a nivel global es lineal. Ademas los meses de Agosto hasta noviembre estuvieron casi constante, no hubo una gran variación en el mercado.
+      En la grafico de dispersión evidenciamos mucho mas como es que la empresa B esta muy por encima que la competencia, hay que recalcar que este grafico es para el mes de diciembre la 
+      cual fue el mes de mayor crecimiento en el mercado.
+    </p>
+    <br>
   </div>
 </template>
 
@@ -124,8 +131,12 @@ export default {
           data: datosGrafico5[0],
         },
       ];
- 
-      this.mayorMercado = "El mes de mayor crecimiento del mercado es: " + datosGrafico5[1] + " con " + datosGrafico5[2];
+
+      this.mayorMercado =
+        "El mes de mayor crecimiento del mercado es: " +
+        datosGrafico5[1] +
+        " con " +
+        datosGrafico5[2];
     },
   },
 };

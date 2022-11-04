@@ -21,7 +21,9 @@ ICAB = data.abMenos, data.abMas
 ICAC = data.acMenos, data.acMas
 ICBC = data.bcMenos, data.bcMas
 
-grafico6 = data.emp_a_ventas, data.emp_b_ventas, data.emp_c_ventas
+grafico6 = data.emp_a_ventas_diciembre, data.emp_b_ventas_diciembre, data.emp_c_ventas_diciembre
+
+graficoEmpresa_C = data.semestre_n, data.semestre1MediaMuestral, data.semestre2MediaMuestral, data.semestre1DesviacionMuestral, data.semestre2DesviacionMuestral, data.v, data.Tcal, data.empresaC_RR, data.semestre1MediaPoblacional, data.semestre2MediaPoblacional
 
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +32,7 @@ CORS(app)
 
 def get_data():
     reponse = {"data": datos, "data2": datos2, "empresaA": empresa_A, "empresaB": empresa_B, "empresaC": empresa_C, "grafico5": grafico5, "analisisGrafico1" : analisisGrafico1,
-    "analisisGrafico2" : analisisGrafico2, "analisisGrafico3" : analisisGrafico3, "ICAB": ICAB, "ICAC": ICAC, "ICBC": ICBC, "grafico6": grafico6}
+    "analisisGrafico2" : analisisGrafico2, "analisisGrafico3" : analisisGrafico3, "ICAB": ICAB, "ICAC": ICAC, "ICBC": ICBC, "grafico6": grafico6, "graficoEmpresa_C": graficoEmpresa_C}
     return jsonify(reponse)
 
 if __name__ == '__main__':

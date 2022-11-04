@@ -58,12 +58,15 @@
             }}
             , {{ grafico1Mas }}]
           </p>
-          <p>
-            Como el intervalo de confianza contiene $700.000, la empresa A no
-            esta en lo correcto
-          </p>
         </div>
       </div>
+      <br>
+      <p style="margin-left: 1%">
+        Podemos envidenciar que la empresa A empezo el año con un alto crecimiento en ventas a comparación de las empresas B y C. La media poblacional y el analisis que hicimos con el 
+        intervalo de confianza para afirmar la predición de la empresa A que hizo en el año 2020 resulto ser falso ya que el intervalo no contiene los $700.000.
+        Los meses de Julio, Agosto y Septiembre fueron los mas prometedores para la empresa A. La empresa A tiene un mercado principalmente ubicado en Estados Unidos ya que sus ventas
+        fueron en dolares. El peor mes de la empresa A fue noviembre.
+      </p>
       <br />
       <hr />
       <grafico2 />
@@ -200,7 +203,6 @@ export default {
           Mediana: empresaA[1],
           Desviación: empresaA[2],
           Varianza: empresaA[3],
-          Correlación: empresaA[4],
           Covarianza: empresaA[5],
           Moda: empresaA[6],
         },

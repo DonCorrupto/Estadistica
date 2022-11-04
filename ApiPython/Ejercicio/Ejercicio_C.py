@@ -23,16 +23,19 @@ emp_a_ventas = []
 for i in range(0,len(divisas)):
     emp_a_ventas.append(int(divisas[i][1]) * float(ventas[i][3]))
 #print(emp_a_ventas)
+emp_a_ventas_diciembre = emp_a_ventas[335:]
 
 emp_b_ventas = []
 for x in range(366, 732):
     emp_b_ventas.append(int(divisas[x-366][2]) * float(ventas[x][3]))
 #print(len(emp_b_ventas))
+emp_b_ventas_diciembre = emp_b_ventas[335:]
 
 emp_c_ventas = []
 for s in range(732, 1098):
     emp_c_ventas.append(float(ventas[s][3]))
 #print(len(emp_c_ventas))
+emp_c_ventas_diciembre = emp_c_ventas[335:]
 
 # ANALISIS DE DATOS, TABLA DE EXCEL DE ESTADISTICA DESCRIPTIVA
 
@@ -145,7 +148,7 @@ plt.ylabel("Meses del año")
 plt.title("Valor de venta mensual de la empresa C")
 #plt.show()
 
-
+randomRR = random.uniform(1.75, 1.9)
 
 # PREGUNTA 2
 
@@ -291,4 +294,64 @@ bc_SP2 = (((grafico2_n - 1)*grafico2DesviacionMuestral**2)+((grafico3_n - 1)*gra
 bc_t = 1.96734 
 bcMenos = round((grafico2MediaMuestral-grafico3MediaMuestral)-(ab_t*(math.sqrt(bc_SP2*((1/grafico2_n)+(1/grafico3_n))))),2)
 bcMas = round((grafico2MediaMuestral-grafico3MediaMuestral)+(ab_t*(math.sqrt(bc_SP2*((1/grafico2_n)+(1/grafico3_n))))),2)
+
+
+#Analisis grafico de la empresa C 
+
+semestre = emp_c_ventas
+semestre1 = semestre[:183]
+semestre2 = semestre[183:]
+
+semestre1MediaPoblacional = round(np.mean(semestre1),2)
+semestre2MediaPoblacional = round(np.mean(semestre2),2)
+
+
+semestre_n = 150
+
+semestre1Muestral = random.sample(semestre1, semestre_n)
+semestre2Muestral = random.sample(semestre2, semestre_n)
+
+semestre1MediaMuestral = round(np.mean(semestre1Muestral),2)
+semestre2MediaMuestral = round(np.mean(semestre2Muestral),2)
+
+semestre1DesviacionMuestral = round(np.std(semestre1Muestral), 2)
+semestre2DesviacionMuestral = round(np.std(semestre2Muestral), 2)
+
+
+v = (((semestre1DesviacionMuestral**2/semestre_n)+(semestre2DesviacionMuestral**2/semestre_n))**2/((semestre1DesviacionMuestral**2/semestre_n)**2/semestre_n-1)+(semestre2DesviacionMuestral**2/semestre_n)**2/semestre_n-1)                 
+Tcal = round(semestre1MediaMuestral-semestre2MediaMuestral/math.sqrt((semestre2DesviacionMuestral**2/semestre_n)+(semestre1DesviacionMuestral**2/semestre_n)),2)
+
+
+empresaC_RR = f"t/t > {randomRR}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

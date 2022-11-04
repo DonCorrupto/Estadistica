@@ -1,5 +1,6 @@
 <template>
-  <div style="display:flex">
+<div>
+    <div style="display:flex">
     <Nuxt />
     <div style="width: 50%">
       <Bar
@@ -30,11 +31,17 @@
           Esto quiere decir que la empresa C tiene mayor ventas que la empresa A.
         </p>
         <p>
-          Intervalo de Confianza A-C [{{ICBCMenos}}, {{ICBCMas}}] este intervalo si contiene el cero.Por tanto,
+          Intervalo de Confianza B-C [{{ICBCMenos}}, {{ICBCMas}}] este intervalo si contiene el cero. Por tanto,
           es razonable suponer que no hay diferencia en los incrementos de las empresas a comparacion de la empresa B.
         </p>
     </div>
   </div>
+  <br>
+  <p style="margin-left: 1%">
+    Viendo la comparación entre las empresas y teniendo en cuenta que estan en el mismo mercado, la empresa por mucho se llevo la mayor parte de ella. Posiblemente la empresa A,
+    es un empresa pequeña o iniciando ya que esta en un mercado estadounidense. La empresa B ya tiene una gran cantidad del mercado a nivel mundial.
+  </p>
+</div>
 </template>
 
 <script>
